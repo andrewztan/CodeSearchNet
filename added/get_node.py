@@ -45,7 +45,6 @@ def getNodeFromInfo(repo, path, func_name, graphs):
 reader = open("model_submissions_python_paths.csv")
 next(reader)
 for i, l in enumerate(reader):
-    if i == 2: break
     parts = l.strip().split(",")
     if len(parts) == 4:
       repo, path, func_name, _ = parts
