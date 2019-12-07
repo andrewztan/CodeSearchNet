@@ -1,7 +1,12 @@
 import matplotlib.pyplot as plt
 import networkx as nx
 
-graphs = {}
+"""
+Given a dictionary of graphs, the repo, path and function name, this script returns the data associated with the corresponding node.
+"""
+
+# For testing purposes only
+"""graphs = {}
 graph = nx.DiGraph()
 repo = "espressif/esptool"
 graph.add_node(repo)
@@ -11,14 +16,14 @@ graph.add_node("ecdsa.py")
 graph.add_edge("ecdsa", "ecdsa.py")
 graph.add_node("string_to_int")
 graph.add_edge("ecdsa.py", "string_to_int")
-graphs[repo] = graph
+graph.add_node("hi.py")
+graphs[repo] = graph"""
 
 predicted_nodes = []
 
 def getNodeFromInfo(repo, path, func_name, graphs):
     if repo not in graphs:
         return None
-    print(repo)
 
     graph = graphs[repo]
     sub = path.split("/")
@@ -35,7 +40,7 @@ def getNodeFromInfo(repo, path, func_name, graphs):
         if not found:
             return None
         elif i == len(sub) - 1:
-            return new_node
+            return dict(graph.nodes(data=True))[new_node]
 
 reader = open("model_submissions_python_paths.csv")
 next(reader)
