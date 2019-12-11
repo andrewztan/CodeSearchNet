@@ -51,8 +51,14 @@ def getNodeFromInfo(repo, path, func_name, graphs):
          return node
 
 
+def writeGraph(graph, i):
+   nx.write_edgelist(nx.convert_node_labels_to_integers(graph), "graphs/" + str(i) + ".edges", data=False)
+
 for i, datapoint in enumerate(data):
    addNodeToGraph(datapoint["path"], datapoint["func_name"], datapoint["repo"], graphs)
+
+for i, key in enumerate(graphs):
+   writeGraph(graphs[key], i)
 
 print("There are " + str(len(graphs)) + " graphs in total.")
 
