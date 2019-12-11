@@ -8,7 +8,7 @@ def addNodeToGraph(graph, repo, path, func_name):
 
     sub = path.split("/")
     #sub.append(func_name)
-    prefix = repo + '/'
+    prefix = repo
     curr_node = repo
     for element in sub:
         found = False
@@ -21,7 +21,7 @@ def addNodeToGraph(graph, repo, path, func_name):
             graph.add_node(node_name, name=element, type='path', repo = repo)
             graph.add_edge(curr_node, node_name)
             curr_node = node_name
-            prefix = prefix + element
+            prefix = prefix + '/' + element
     node_name = prefix + '/' + func_name
     graph.add_node(node_name, name=func_name, type='func', repo = repo, path = prefix)
     graph.add_edge(curr_node, node_name)
